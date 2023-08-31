@@ -1,0 +1,56 @@
+{% load django_bootstrap5 %}
+<!doctype html>
+<html lang="ru">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>"Task Manager"</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">"Task Manager"</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">"Login"</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">"Register"</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users' %}">"Users"</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert {{ category }}" role="alert">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+
+    <main class="flex-grow-1">
+        <div class="container-lg mt-3">
+            {% block main %} {% endblock %}
+        </div>
+    </main>
+
+    <footer class="border-top py-3 mt-5 flex-shrink-0">
+        <div class="container-lg">
+            <div class="text-center">
+                <a href="https://znammikhail.github.io/" target="_blank">Mikhail Znamenskii</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
